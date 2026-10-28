@@ -1,0 +1,18 @@
+- name: Setup nginx
+  hosts: web
+  become: true
+  tasks:
+    - name: Install nginx
+      ansible.builtin.apt:
+        name: nginx
+        state: present
+        update_cache: true
+
+    - name: Pastikan nginx jalan
+      ansible.builtin.shell: pgrep nginx || nginx
+      changed_when: false
+
+    - name: Ganti halaman default
+      ansible.builtin.copy:
+        content: "Hello dari {{ inventory_hostname }}\n"
+        dest: /var/www/html/index.html
