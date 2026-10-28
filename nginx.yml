@@ -14,5 +14,5 @@
 
     - name: Ganti halaman default
       ansible.builtin.copy:
-        content: "Hello dari {{ inventory_hostname }}\n"
+        content: "Halo dari {{ inventory_hostname }}\n"
         dest: /var/www/html/index.html
